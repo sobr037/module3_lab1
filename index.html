@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Module 3.1 Lab Exercises - Fundamentals</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+
+        
+        <script>
+
+            
+            /* 1. */ console.log("<--- Question 1 --->")
+
+                console.log("" + 1 + 0)   // 10
+                console.log("" - 1 + 0)   // -1
+                console.log(true + false)   // 1
+                console.log(!true)   // false
+                console.log(6 / "3")   // 2
+                console.log("2" * "3")   // 6
+                console.log(4 + 5 + "px")   // 9px
+                console.log("$" + 4 + 5)   // $45
+                console.log("4" - 2)   // 2
+                console.log("4px" - 2)   // 2px (wrong first try: is NaN due to px)
+                console.log(" -9 " + 5)   // -9 5
+                console.log(" -9 " - 5)   // -14
+                console.log(null + 1)   // 1
+                console.log(undefined + 1)   // NaN
+                console.log(undefined == null)   // true 
+                console.log(undefined === null)   // false
+                console.log(" \t \n" - 2)   //  NaN (wrong first try: is -2)
+                
+            
+            /* 2.  */ console.log("<--- Question 2 --->")
+
+                let three = "3"
+                let four = "4"
+                let thirty = "30"
+
+                //what is the value of the following expressions?
+
+                let addition = three + four               // addition = 34
+                    console.log(addition)
+                let multiplication = three * four        // multiplication = 12
+                    console.log(multiplication)
+                let division = three / four              // Division = 0.75
+                    console.log(division)
+                let subtraction = three - four          // Subtraction = -1
+                    console.log(subtraction)
+                let lessThan1 = three < four           // LessThan1 = true
+                    console.log(lessThan1)
+                let lessThan2 = thirty < four         // LessThan2 = false \ Wrong first try: Should be true. 
+                    console.log(lessThan2)
+
+            
+            /* 3.  */ console.log("<--- Question 3 --->")
+
+                if (0) console.log('#1 zero is true')   
+                if ("0") console.log('#2 zero is true') // Print - 0 is not an empty string (is considered True).
+                if (null) console.log('null is true')  
+                if (-1) console.log('negative is true') // -1 is considered True.
+                if (1) console.log('positive is true') // 1 is considered true.
+                
+            /* 4.  */  console.log("<--- Question 4 --->")
+
+                let a = 2, b = 3;
+                let result = `${a} + ${b} is ${(a + b < 10) ? 'less than 10' : 'greater than 10'}`;
+                console.log(result)
+
+                // += appends the strings together.
+
+
+            /* 5.  */ console.log("<--- Question 5 --->")
+
+                function getGreeting(name) {
+                    return 'Hello ' + name + '!';
+                }
+                console.log(getGreeting("Sam"))
+            
+                // Function Expression Syntax:
+                    const getGreeting2 = function(name2) { // Creating function expression called getGreeting2
+                        return 'Hello ' + name2 + '!';
+                    };
+                    console.log(getGreeting2("John"));
+
+                // Arrow Function Syntax:
+                    const getGreeting3 = (name3) => { // Creating arrow function called getGreeting3
+                        return 'Hello ' + name3 + '!';
+                    };
+                    console.log(getGreeting3("Mary"));
+
+
+            /* 6.  */ console.log("<--- Question 6 --->")
+
+                const westley = {
+                    name: 'Westley',
+                    numFingers: 5
+                }
+                const rugen = {
+                    name: 'Count Rugen',
+                    numFingers: 6
+                }
+
+              // a) Complete the inigo object by adding a lastName property and including it in the greeting.   
+              // b) Complete getCatchPhrase so that if the person argument has 6 fingers, it instead prints his famous catch phrase to the console.   
+
+                const inigo = {
+                    firstName: 'Inigo',
+                    lastName: 'Montoya',
+
+                    greeting(person) {
+                        let greeting = `Hello ${person.name}, my name is ${this.firstName + " " + this.lastName + ". "}`;  // Appended to mention last name in welcome as per A tasks.
+                        console.log(greeting + this.getCatchPhrase(person));
+                    },
+                    getCatchPhrase(person) {
+                        if (person.numFingers === 6) { // If person has 6 fingers then say this.
+                            return 'You killed my father. Prepare to die.';
+                        }
+                        else { // Else if person has anything other than 6 fingers then say this. 
+                            return 'Nice to meet you.';
+                        };
+
+
+                        
+                    }
+                }
+
+                inigo.greeting(westley)
+                inigo.greeting(rugen)
+
+
+                // c) Update getCatchPhrase to use arrow function syntax and a conditional operator.
+                    // Answer would be: getCatchPhrase: (person) => person.numFingers === 6 ? 'Your princess is quite a winning creature. A trifle simple, perhaps. Her appeal is undeniable.' : 'Nice to meet you.'};
+
+        
+            /* 7.  */ console.log("<--- Question 7 --->")
+
+                // a) Modify each of the methods so that they can be ‘chained’ together and the last line of the example code works
+
+                const basketballGame = {
+                    score: 0,
+                    fouls: 0,
+                    freeThrow() {
+                        this.score++; // Equivalent of 1 point
+                        return this;
+                    },
+                    basket() {
+                        this.score += 2; // Equivalent of 2 points
+                        return this;
+                    },
+                    threePointer() {
+                        this.score += 3; // Equivalent of 3 point
+                        return this;
+                    },
+                    halfTime() {
+                        console.log('Halftime score is: ' + this.score + ". Number of fouls: " + this.fouls);
+                        return this;
+                    },
+
+                    // b) Add a new method to print the full time final score
+
+                    fullTime() {
+                        console.log('Fulltime score is: ' + this.score + ". Number of fouls: " + this.fouls);
+                        return this;
+                    },
+
+                    // c) Add a new object property to keep track of the number of fouls and a method to increment it, similar but separate to the score. Include the foul count in the half time and full time console messages.
+                    foul() {
+                        this.fouls++; // Equivalent of 1 Foul
+                        return this;
+                    }
+                };
+
+                basketballGame.basket().freeThrow().freeThrow().foul().basket().threePointer().halfTime(); // Print halftime score.
+                basketballGame.basket().freeThrow().freeThrow().foul().foul().basket().threePointer().fullTime(); // Print fulltime score.
+
+            /* 8.  */ console.log("<--- Question 8 --->");
+
+                const sydney = {
+                    name: 'Sydney',
+                    population: 5_121_000,
+                    state: 'NSW',
+                    founded: '26 January 1788',
+                    timezone: 'Australia/Sydney'
+                    };
+                const wellington = {
+                    country: 'New Zealand',
+                    avgTemp: 12.5,
+                    mayor: "Tory Whanau",
+                    population: 212_700
+                    };
+
+                // a) Write a function that takes an object as an argument and uses a for...in loop to access and print to the console each of those object properties and their values. Test it using the sydney object below.
+
+                    function city(name) {
+                        for (let prop in name) {
+                            console.log(`${prop}: ${name[prop]}`);
+                        }
+                    };
+                    city(sydney);
+                
+                // b) Create a new object for a different city with different properties and call your functionagain with the new object.
+                    console.log("--------");
+                    city(wellington);
+
+            /* 9.  */ console.log("<--- Question 9 --->");
+
+                let teamSports = ['Hockey', 'Cricket', 'Volleyball'];
+                let dog1 = 'Bingo';
+                let cat1 = { name: 'Fluffy', breed: 'Siberian' };
+
+                    // a) Create a new moreSports variable equal to teamSports and add some new sport values to it (using push and unshift)
+
+                        let moreSports = [...teamSports]; // moreSports list is equal to teamSports list 
+                        moreSports.push('Tennis', 'Rugby', 'Soccor'); // Push new values to moreSports only.
+                        console.log("moreSports list: " + moreSports);
+
+                    // b) Create a new dog2 variable equal to dog1 and give it a new value
+
+                        let dog2 = [dog1]; // dog2 list is equal to dog1 list 
+                        dog2.splice(0, 1, 'Lucky'); // At position 0, remove 1 item and add 'Lucky'
+                        console.log("dog2 list: " + dog2);
+
+                    // c) Create a new cat2 variable equal to cat1 and change its name property
+
+                    let cat2 = Object.assign({}, cat1);  // cat 2 properties are equal to cat 1 properties.
+                    cat2.name = 'Whiskers'; // Adjust cat2 name.
+                    console.log("Cat 2 list:" + JSON.stringify(cat2));
+
+                    // d) Print the original teamSports, dog1 and cat1 variables to the console. Have they changed? Why?
+                        console.log(teamSports)
+                        console.log(dog1)
+                        console.log(cat1)
+                        // No changes to original variables as we made changes to the new variables that we declared. 
+
+
+            /* 10.  */ console.log("<--- Question 10 --->");
+
+                function Person(name, age) {
+                    this.name = name;
+                    this.age = age;
+                    this.human = true;
+                    
+                    this.canDrive = function() {
+                        return this.age >= 16;
+                    };
+                    };
+
+                // a) Create a new person using the constructor function and store it in a variable.
+
+                    const sam = new Person("Sam", 22);
+                
+                // b) Create a second person using different name and age values and store it in a separate variable.
+
+                    const emma = new Person("Emma", 15);
+
+                // c) Print out the properties of each person object to the console
+
+                    console.log("Name: " + sam.name + " Age: " + sam.age + " Can Drive: " + sam.canDrive());
+                    console.log("Name: " + emma.name + " Age: " + emma.age + " Can Drive: " + emma.canDrive());
+
+                // d) Rewrite the constructor function as a class called PersonClass and use it to create a third person using different name and age values. Print it to the console as well.
+
+                    class PersonClass {
+                        constructor(name, age) {
+                            this.name = name;
+                            this.age = age;
+                            this.human = true;
+                        }
+                        canDrive() {
+                            return this.age >= 16;
+                        }
+                    };
+
+                    const james = new PersonClass("James", 26);
+                    console.log("Name: " + james.name + " Age: " + james.age + " Can Drive: " + james.canDrive());
+
+        </script>
+    </body>
+</html>
+
+

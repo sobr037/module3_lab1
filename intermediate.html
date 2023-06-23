@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Module 3 Lab Exercises - Intermediate</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+
+        
+        <script>
+
+            
+            /* 1. Create a function that takes a string as a parameter and returns the string with the first
+            character of each word changed into a capital letter, as in the example below. Test it with different strings.:*/
+            console.log("<-- Module 3 Labs - Challenge #1 -->")
+
+                var city = "los angeles" /* Variable user input. */
+                
+                function ucFirstLetters(city) {  /* This desclares the Function 'ucFirstLetters'. */
+
+                    const inputSplit = city.split(' ');  /* This takes input and splits into an array of individual words. */
+
+                    const inputSplitCapitalised = inputSplit.map(word => {  /* Maps each word within the array. */
+                        const capitalised = word.charAt(0).toUpperCase() + word.slice(1); /* Capitalised each individual word. */
+                        return capitalised;
+                    });
+
+                    const output = inputSplitCapitalised.join(' ') /* Joins the words back into a string. */
+                    return output;
+                }
+
+                console.log("Before ucFirstLetters Function: " + city); /* Prints city input into the console unedited. */
+                console.log("After ucFirstLetters Function: " + ucFirstLetters(city)); /* Prints city input into the console after applying the function. */
+
+            /* 2. Create a function truncate(str, max) that truncates a given string of text if its total
+            length is greater than the max length. It should return either the truncated text, with an ellipsis (...) 
+            added to the end if it was too long, or the original text otherwise. */
+            console.log("<-- Module 3 Labs - Challenge #2 -->")
+
+                var str = "This is the users input text that gets cutoff after a certain length." /* Variable user input for Str. */
+                var max = 28 /* Variable user input for Max characters. */
+                
+                function truncate(str, max){ /* This declares function truncate. */
+
+                    if (str.length > max) { /* Els-If statement: */
+                        return str.slice(0, max) + "..."; /* If string length more than var: max then slice text and add ... */
+                    } 
+                    else { /* Else print string if text = or less than max var. */
+                        return str;
+                    }
+                }
+
+                console.log("Before truncate Function: " + str); 
+                console.log("After truncate Function: " + truncate(str, max));
+
+                /* b) Write another variant of the truncate function that uses a conditional operator. */
+
+                    function conditionalTruncate(str, max) { /* This declares function conditionalTruncate. */
+                        return str.length > max ?  /* Check if the length of the string is greater than the maximum */
+                            str.slice(0, max) + '...' : /* If true then: slice text and add ... */
+                            str; /* Else print string if text = or less than max var. */
+                        }
+
+                    console.log("Before conditionalTruncate Function: " + str);
+                    console.log("After conditionalTruncate Function: " + conditionalTruncate(str, max));
+
+            
+            /* 3.  */ 
+                console.log("<-- Module 3 Labs - Challenge #3 -->")
+
+                const animals = ['Tiger', 'Giraffe'];
+                console.log(animals);
+
+                // a) Add 2 new values to the end
+                    animals.push('Dinosaur', 'Turtle');
+                    console.log("3A: " + animals);
+
+                // b) Add 2 new values to the beginning
+                    animals.unshift('Cat','Dog');
+                    console.log("3B: " + animals);
+
+
+
+                // c) Sort the values alphabetically
+                    animals.sort();
+                    console.log("3C: " + animals);
+
+                // d) Write a function replaceMiddleAnimal(newValue) that replaces the value in the middle of the animals array with newValue.
+
+                    console.log("Before replace MiddleAnimal Function: " + animals);
+
+                    var newValue = "Llama" //Declare the newValue variable.
+                    function replaceMiddleAnimal(newValue) { // Declares the function.
+
+                        const middleOfIndex = Math.floor(animals.length / 2); //Finds the middle of index.
+
+                        if (animals.length % 2 == 0) { // If there is an even number of elements.
+                            animals.splice(middleOfIndex, 0, newValue) // add the newValue variable element in center. 
+                        }
+                        else { // If there is an odd number of elements.
+                            animals.splice(middleIndex + 1, 0, newValue); // add the newValue variable to the right of the element in the center. 
+                        }
+                    };
+
+                    replaceMiddleAnimal(newValue); 
+                    console.log("After replaceMiddleAnimal Function: " + animals);
+
+                // e) Write a function findMatchingAnimals(beginsWith) that returns a new array containing all the animals that begin with the beginsWith string. Try to make it work regardless of upper/lower case.
+
+                    function findMatchingAnimals(beginsWith) { // Declares the function findMatchingAnimals
+                        const beginsWithLowercase = beginsWith.toLowerCase(); // Converts user input into lowercase and assigns it to a new const.
+                        return animals.filter(animal => animal.toLowerCase().startsWith(beginsWithLowercase)); // Converts animals list to lowercase and filters based on what string the animals name begins with.
+                    };
+
+                    console.log("Matching Animals: " + findMatchingAnimals('t')); //Searches for any animals that start with 'T' or 't'
+
+
+            /* 4.  */ console.log("<-- Module 3 Labs - Challenge #4 -->");
+
+                // 4. Write a function camelCase(cssProp) that changes dash-separated CSS properties like 'margin-left' into camel-cased 'marginLeft'. The function should remove all dashes, and uppercase the first letter of each word after adash.
+
+
+                    function camelCase(cssProp) { // Declares the function camelCase.
+                        var words = cssProp.split('-'); // Splits the entered string into an array of words.
+
+                        for (var wordIndex = 0; wordIndex < words.length; wordIndex++) {
+                            if (wordIndex !== 0) { // Skips the initial word returned as it doesn't need to be uppercased.
+                                var word = words[wordIndex];
+                                words[wordIndex] = word.charAt(0).toUpperCase() + word.slice(1); // Capitalize first letter of any subsequent words and complete slice.
+                            }
+                        }
+                        return words.join('');  // Joins the string within array back together.
+                    };
+
+                    console.log(camelCase('margin-left'))
+                    console.log(camelCase('background-image'))
+                    console.log(camelCase('display')) 
+
+                // b) Create variants of the camelCase function that use different types of for loops, and
+                // c) with and without the conditional operator.
+
+                    // Alternative For Loop Function: 
+
+                    function camelCaseAlternative(cssProp) {
+                        var words = cssProp.split('-'); // Declares variable 'words' as being cssProp value split into array via '-' 
+                        var firstWord = true; // Declares variable firstWord.
+                        var camelCaseProp = ''; // Declares variable camelCaseProp.
+
+                        for (var word of words) { // Go through each word of array. 
+                            if (!firstWord) { // If not first word then.
+                            word = word.charAt(0).toUpperCase() + word.slice(1); // Capitalise each word.
+                            }
+
+                            camelCaseProp += word; // Adds modified word to the camelCaseProp variable.
+                            firstWord = false; // Set firstWord to false after the first word.
+                        }
+
+                        return camelCaseProp; // Returns camelCase property
+                    };
+
+                        console.log(camelCaseAlternative('flex-direction')); // marginLeft
+
+
+            /* 5.  */ console.log("<-- Module 3 Labs - Challenge #5 -->");
+
+                let twentyCents = 0.20
+                let tenCents = 0.10
+                let fixedTwenty = twentyCents.toFixed(2);
+                let fixedTen = tenCents.toFixed(2);
+                console.log(fixedTwenty + fixedTen) //why is this not working?
+
+                // a) Explain why the above code returns the wrong answer
+
+                    // Answer: When we call .toFixed the answer is returned as a String, so:
+                        // 0.20.toFixed(2) = "0.20"
+                        // 0.10.toFixed(2) = "0.10"
+                        // So "0.20" + "0.10" = "0.200.10" as these are Strings. 
+
+                // b) Create a function currencyAddition(float1, float2) which safely adds the two decimal numbers float1 and float2 and returns the correct float result.
+
+                    function currencyAddition(float1, float2){ // Declares function currencyAddition
+                        let fixedFloat1 = float1.toFixed(2) // Converts float1 to a string with 2 decimal places
+                        let fixedFloat2 = float2.toFixed(2) // Converts float2 to a string with 2 decimal places
+                        let sum = Number(fixedFloat1) + Number(fixedFloat2); // Convert the strings to numbers and add them together
+                        return sum;
+                    }
+
+                    console.log(currencyAddition(5.4,2.0))
+
+                // c) Create a function currencyOperation(float1, float2, operation) which safely performs the given operation (either +, -, / or *) on the two numbers and returns the correct float result. 
+                // (Extension) Extend the above function to include a fourth argument numDecimals which allows the operation to support different amounts of decimal places from 1 to 10.
+
+                    function currencyOperation(float1, float2, numDecimals, operation) { // Declared function currencyOperation
+                        if (operation === '+') { // If user inputs + then
+                            result = float1 + float2;
+                        } else if (operation === '-') {  // If user inputs - then
+                            result = float1 - float2;
+                        } else if (operation === '*') { // If user inputs * then
+                            result = float1 * float2;
+                        } else if (operation === '/') { // If user inputs / then
+                            result = float1 / float2;
+                            }
+                         else { // If user inputs anything else then
+                            result = "Invalid operation. try aagin."
+                        }
+                        return parseFloat(result.toFixed(numDecimals)); // Retuns completed results as a float.
+                        };
+
+                    console.log(currencyOperation(1.11, 1.11, 2, '+'));
+                    console.log(currencyOperation(2.11, 2.11, 1, '+'));
+
+
+            /* 6.  */ console.log("<-- Module 3 Labs - Challenge #6 -->");
+
+                const colours = ['red', 'green', 'blue', 'yellow', 'orange', 'red', 'blue', 'yellow']
+                const testScores = [55, 84, 97, 63, 55, 32, 84, 91, 55, 43]
+
+                // Create a function unique(duplicatesArray) which takes an array parameter that may include duplicates. Your function should return an array containing only the unique values from duplicatesArray.
+                    
+                    function unique(duplicatesArray) { // Declares function unique
+                        const uniqueArray = []; // Stores the unique values.
+
+                        for (let i = 0; i < duplicatesArray.length; i++) { // Loops through each element in duplicatesArray
+                            const currentValue = duplicatesArray[i];
+
+                            if (!uniqueArray.includes(currentValue)) { // Check if value is already in the uniqueArray
+                                uniqueArray.push(currentValue);
+                            }
+                        }
+                        return uniqueArray;
+                    };
+
+                    console.log(unique(colours)) // [ 'red', 'green', 'blue', 'yellow', 'orange' ]
+                    console.log(unique(testScores)) // [ 55, 84, 97, 63, 32, 91, 43 ]
+
+            
+            /* 7.  */ console.log("<-- Module 3 Labs - Challenge #7 -->");
+
+                // Use the following array of book objects to practice the array functions for map, find and filter. Test each of your answers to the below tasks.
+
+                    const books = [
+                        { id: 1, title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', year: 1925 },
+                        { id: 2, title: 'To Kill a Mockingbird', author: 'Harper Lee', year: 1960 },
+                        { id: 3, title: '1984', author: 'George Orwell', year: 1949 },
+                        { id: 4, title: 'Brave New World', author: 'Aldous Huxley', year: 1932 },
+                        { id: 5, title: 'The Catcher in the Rye', author: 'J.D. Salinger', year: 1951 },
+                    ];
+                
+                // a) Write a function getBookTitle(bookId) that uses the find function to return the title of the book object with the matching id.
+
+                    function getBookTitle(bookId){ // Declares function getBookTitle
+                        const bookSearchResults = books.find(book => book.id === bookId) // Stores results in bookSearchResults
+                        return bookSearchResults.title; // Returns book title
+                    };
+
+                    console.log("Book Title: " + getBookTitle(2))
+
+                // b) Write a function getOldBooks() that uses the filter function to return all book objects written before 1950.
+
+                    function getOldBooks() { // Declares function getOldBooks.
+                        const oldBookSearchResults = books.filter(book => book.year < 1950) // Filters out to only show books prior to 1950.
+                        return JSON.stringify(oldBookSearchResults) // Returns results in a string.
+                    };
+
+                    console.log("Old Books: " + getOldBooks())
+
+                // c) Write a function addGenre() that uses the map function to add a new genre property to all of the above books, with the value ‘classic’.
+
+                    function addGenre() { // Declares function addGenre.
+                        const booksWithGenre = books.map(book => { // Created new object.
+                            return { ...book, genre: 'classic' }; }); // Adds Genre to new object.
+                        return booksWithGenre; // Returns results.
+                    };
+
+                console.log(addGenre());
+                    
+
+            /* 8.  */ console.log("<-- Module 3 Labs - Challenge #8 -->");
+
+                const phoneBookABC = new Map() //an empty map to begin with
+                phoneBookABC.set('Annabelle', '0412312343')
+                phoneBookABC.set('Barry', '0433221117')
+                phoneBookABC.set('Caroline', '0455221182')
+
+                // a) Create a new phoneBookDEF Map to store names beginning with D, E or F
+
+                    const phoneBookDEF = new Map(); // Define phoneBookDEF map.
+                    
+                    for (const [name, number] of phoneBookABC) { // For of loop to go through each entry of phoneBookABC.
+                        const firstLetter = name.charAt(0).toUpperCase(); // Convert first letter of each name to uppsercase.
+                        if (['D', 'E', 'F'].includes(firstLetter)) { // If name starts with D, E, F then add the entry to phoneBookDEF.
+                            phoneBookDEF.set(name, number);
+                        }
+                    }
+
+                    console.log(phoneBookDEF);
+
+                // b) Initialise the contents of phoneBookDEF by passing in an array of keys/values
+                    
+                    phoneBookDEF.set('David', '0221234565')
+                    phoneBookDEF.set('Ella', '0229876564')
+                    phoneBookDEF.set('Fred', '0223212344')
+                    console.log(phoneBookDEF);
+
+                // c) Update the phone number for Caroline
+
+                phoneBookABC.set('Caroline', '0499887766');
+                console.log(phoneBookABC);
+
+                // d) Write a function printPhoneBook(contacts) that prints the names and phone numbers in the given Map
+
+                    function printPhoneBook(contacts) { // Declares new printPhoneBook function.
+                        for (const [name, number] of contacts) { // For each entry of the Map.
+                            console.log(`Name: ${name}, Phone Number: ${number}`); // Log the Name + Phone Number of customer.
+                        }
+                    };
+
+                    printPhoneBook(phoneBookDEF);
+                
+                // e) Combine the contents of the two individual Maps into a single phoneBook Map
+                // f) Print out the full list of names in the combined phone book
+                
+                    const masterPhoneBook = new Map([...phoneBookABC, ...phoneBookDEF]); // Define masterPhoneBook map.
+                    console.log("Single Phone Book Entries:")
+                    printPhoneBook(masterPhoneBook)
+
+
+            /* 9.  */ console.log("<-- Module 3 Labs - Challenge #9 -->");
+                    
+                let salaries = {
+                    "Timothy" : 35000,
+                    "David" : 25000,
+                    "Mary" : 55000,
+                    "Christina" : 75000,
+                    "James" : 43000
+                };
+
+                // a) Write a function sumSalaries(salaries) that calculates and returns the total of all salaries
+
+                    function sumSalaries(salaries) { // Declares function sumSalaries.
+                        let total = 0; // Define total.
+  
+                        for (let key in salaries) { // for if loop.
+                            if (salaries.hasOwnProperty(key)) { // If Salary has entry then.
+                                total += salaries[key]; // Adds salaries together. 
+                            };
+                        };
+                        return "Total of All Salaries: $" + total; 
+                    };
+
+                    console.log(sumSalaries(salaries));
+
+                // b) Write a function topEarner(salaries) that calculates and returns the name of the person earning the highest salary
+
+                    function topEarner(salaries) { // Declares topEarner Function.
+                        let maxSalary = 0; // Defines maxSalary
+                        let topEarnerName = ''; // Defines topEarnerName
+
+                        for (let name in salaries) {
+                            if (salaries[name] > maxSalary) {
+                                maxSalary = salaries[name];
+                                topEarnerName = name;
+                            };
+                        };
+                        return "Top Earner Name: " + topEarnerName + ", Salary: $" + maxSalary;
+                    };
+
+                    console.log(topEarner(salaries));
+
+            /* 10.  */ console.log("<-- Module 3 Labs - Challenge #10 -->");
+
+                const today = new Date();
+                    console.log('Current time is ' + today.toLocaleTimeString())
+                    console.log(today.getHours() + ' hours have passed so far today')
+
+                // a)  Print the total number of minutes that have passed so far today
+
+                    const minutes = today.getMinutes(); // Declares that minutes = how many minutes have passed in current hour.
+                    const totalMinutes = today.getHours() * 60 + minutes; // Declares totalMinutes = passed hours times 60, + minutes.
+                    console.log(totalMinutes + ' minutes have passed so far today') // Prints results.
+
+                // b) Print the total number of seconds that have passed so far today
+
+                    const currentSeconds = today.getSeconds() // Declares currentSeconds as being the current number of seconds that have passed since the last minute.
+                    const seconds = totalMinutes * 60 + currentSeconds // Declares seconds as = totalMinutes times 60, + currentSeconds.
+                    console.log(seconds + ' seconds have passed so far today') // Prints results.
+
+                // c) Calculate and print your age as: 'I am x years, y months and z days old'
+
+                    function calculateAge(birthdate) { // Declared function calculateAge.
+                        const today = new Date(); // Set today as todays date.
+                        const birth = new Date(birthdate); // sets birth as birthdate.
+
+                        let years = today.getFullYear() - birth.getFullYear();
+                        let months = today.getMonth() - birth.getMonth();
+                        let days = today.getDate() - birth.getDate();
+
+                        return `I am ${years} years, ${months} months, and ${days} days old.`;
+                    }
+                    console.log(calculateAge('2001-02-14'));
+
+                // d) Write a function daysInBetween(date1, date2) which calculates and returns the amount of days in between the two given dates.
+
+                    function daysInBetween(date1, date2) { // Declares new function daysInBetween
+                        const oneDay = 24 * 60 * 60 * 1000; // defines oneDay as num of milliseconds in 24 hour period. 
+                        const day1 = new Date(date1);
+                        const day2 = new Date(date2);
+    
+                        const timeDiference = Math.abs(day2.getTime() - day1.getTime()); // Calculates difference in days
+                        const diferenceInDays = Math.ceil(timeDiference / oneDay);
+    
+                        return "Number of days between the two dates: " + diferenceInDays; 
+                    };
+                    console.log(daysInBetween('2023-06-10', '2023-06-20'))
+
+        </script>
+    </body>
+</html>
+
+
